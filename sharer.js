@@ -258,8 +258,10 @@ Sharer.prototype = {
                 popParams = 'scrollbars=no, width=' + popWidth + ', height=' + popHeight + ', top=' + top + ', left=' + left,
                 newWindow = window.open(sharer.shareUrl, '', popParams);
 
-            if (window.focus) {
+            if (newWindow && typeof newWindow.focus === 'function') {
                 newWindow.focus();
+            } else {
+                window.location.href = sharer.shareUrl;
             }
         } else {
             window.location.href = sharer.shareUrl;
